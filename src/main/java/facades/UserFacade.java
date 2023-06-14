@@ -120,23 +120,7 @@ public class UserFacade {
 //            em.close();
 //        }
 //    }
-//
-//    //This method allows a member to assign their family for an event
-//    public String assignFamily(int id, int familyName) {
-//        EntityManager em = emf.createEntityManager();
-//        try {
-//            em.getTransaction().begin();
-//            em.createQuery("UPDATE Member m SET m.familyName = :familyId WHERE m.id = :id")
-//                    .setParameter("familyId", familyName)
-//                    .setParameter("id", id)
-//                    .executeUpdate();
-//            em.getTransaction().commit();
-//            return GSON.toJson(em.createQuery("SELECT m FROM Member m WHERE m.id = :id")
-//                    .setParameter("id", id)
-//                    .getSingleResult());
-//        } finally {
-//            em.close();
-//        }
+
 
 
 }

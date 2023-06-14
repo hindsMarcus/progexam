@@ -11,10 +11,13 @@ public class EventDTO {
     private String time;
     private String location;
     private String dish;
-    private double pricePerPerson;
+    private int pricePerPerson;
 
 
-    public EventDTO(Long id, String time, String location, String dish, double pricePerPerson) {
+    public EventDTO() {
+    }
+
+    public EventDTO(Long id, String time, String location, String dish, int pricePerPerson) {
         this.id = id;
         this.time = time;
         this.location = location;
@@ -22,7 +25,7 @@ public class EventDTO {
         this.pricePerPerson = pricePerPerson;
     }
 
-    public EventDTO(String time, String location, String dish, double pricePerPerson) {
+    public EventDTO(String time, String location, String dish, int pricePerPerson) {
         this.time = time;
         this.location = location;
         this.dish = dish;
@@ -81,11 +84,11 @@ public class EventDTO {
         this.dish = dish;
     }
 
-    public double getPricePerPerson() {
+    public int getPricePerPerson() {
         return pricePerPerson;
     }
 
-    public void setPricePerPerson(double pricePerPerson) {
+    public void setPricePerPerson(int pricePerPerson) {
         this.pricePerPerson = pricePerPerson;
     }
 

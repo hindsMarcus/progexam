@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
 //Todo Remove or change relevant parts before ACTUAL use
 @Path("admin")
 public class AdminResource {
@@ -26,9 +27,10 @@ public class AdminResource {
     @Path("create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createEvent(EventDTO eventDTO) {
+    public Response createEvent(String input) {
+        EventDTO eventDTO = GSON.fromJson(input, EventDTO.class);
         FACADE.createEvent(eventDTO);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.ok().build();
     }
 
     // US-5: As an admin, I would like to remove users from an event
@@ -41,9 +43,11 @@ public class AdminResource {
 
     // US-6: As an admin, I would like to update all information about an event
     @PUT
-    @Path("update/{eventId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateEvent(@PathParam("eventId") Long eventId, EventDTO eventDTO) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("update/{eventId}")
+    public Response updateEvent(@PathParam("eventId") Long eventId, String input) {
+        EventDTO eventDTO = GSON.fromJson(input, EventDTO.class);
         eventDTO.setId(eventId);
         EventDTO updatedEventDTO = FACADE.updateEvent(eventDTO);
         return Response.ok(updatedEventDTO).build();
@@ -52,9 +56,10 @@ public class AdminResource {
 
     // US-7: As an admin, I would like to delete an event
     @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("delete/{eventId}")
-    public Response deleteEvent(@PathParam("eventId") int eventId) {
-        EventDTO eventDTO = FACADE.deleteEvent(eventId);
-        return Response.ok(eventDTO).build();
+    public Response deleteEvent(@PathParam("eventId") Long eventId) {
+        FACADE.deleteEvent(eventId);
+        return Response.ok().build();
     }
 }

@@ -18,8 +18,30 @@ POST http://localhost:8080/progexam/api/admin/create
 Content-Type: application/json
 
 {
+  "time": "2023-12-23",
+  "location": "Berlin",
+  "dish": "Schnitzel",
+  "pricePerPerson": 30
+}
+
+###
+PUT http://localhost:8080/progexam/api/admin/update/1
+Content-Type: application/json
+
+{
   "time": "2024-09-01",
-  "location": "Copenhagen",
+  "location": "Mit sted",
+  "dish": "Pasta",
+  "pricePerPerson": 100
+}
+
+###
+DELETE http://localhost:8080/progexam/api/admin/delete/1
+Content-Type: application/json
+
+{
+  "time": "2024-09-01",
+  "location": "Mit sted",
   "dish": "Pizza",
   "pricePerPerson": 100
 }

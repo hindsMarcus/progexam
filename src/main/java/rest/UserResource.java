@@ -90,8 +90,24 @@ public class UserResource {
     }
 
     // US-2: As a user, I would like to see all my previous transactions and my current account status
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("transactions/{username}")
+//    public Response getTransactions(@PathParam("username") String username){
+//        UserDTO udto = FACADE.getTransactions(username);
+//        return Response.ok().entity(udto).build();
+//    }
 
 
     // US-3: As a user, I would like to assign my family to an event and add members
+//    @PUT
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("addfamily/{username}")
+//    public Response addFamily(@PathParam("username") String username, String input){
+//        UserDTO udto = GSON.fromJson(input, UserDTO.class);
+//        UserDTO udtoNew = FACADE.addFamily(username, udto);
+//        return Response.ok().entity(udtoNew).build();
+//    }
 
 }

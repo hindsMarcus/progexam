@@ -7,6 +7,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "event")
+@NamedQueries({
+        @NamedQuery(name = "Event.deleteAll", query = "delete from Event")
+})
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +26,14 @@ public class Event {
     private String dish;
 
     @Column(name = "price_per_person", nullable = false)
-    private double pricePerPerson;
+    private int pricePerPerson;
 
 
     public Event() {
     }
 
 
-    public Event(String time, String location, String dish, double pricePerPerson) {
+    public Event(String time, String location, String dish, int pricePerPerson) {
         this.time = time;
         this.location = location;
         this.dish = dish;
@@ -71,11 +74,11 @@ public class Event {
         this.dish = dish;
     }
 
-    public double getPricePerPerson() {
+    public int getPricePerPerson() {
         return pricePerPerson;
     }
 
-    public void setPricePerPerson(double pricePerPerson) {
+    public void setPricePerPerson(int pricePerPerson) {
         this.pricePerPerson = pricePerPerson;
     }
 
@@ -93,4 +96,14 @@ public class Event {
     }
 
 
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                ", dish='" + dish + '\'' +
+                ", pricePerPerson=" + pricePerPerson +
+                '}';
+    }
 }

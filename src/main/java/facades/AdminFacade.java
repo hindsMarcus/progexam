@@ -7,6 +7,8 @@ import entities.Event;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.Collection;
+import java.util.List;
 
 
 public class AdminFacade {
@@ -69,6 +71,7 @@ public class AdminFacade {
     public EventDTO updateEvent(EventDTO eventDTO) {
         EntityManager em = emf.createEntityManager();
         Event event = em.find(Event.class, eventDTO.getId());
+        System.out.println(event);
         event.setTime(eventDTO.getTime());
         event.setLocation(eventDTO.getLocation());
         event.setDish(eventDTO.getDish());
@@ -84,7 +87,7 @@ public class AdminFacade {
     }
 
     //This method takes an id and deletes the event in the database, and removes the event from all users
-    public EventDTO deleteEvent(int id) {
+    public EventDTO deleteEvent(Long id) {
         EntityManager em = emf.createEntityManager();
         Event event = em.find(Event.class, id);
         try {
@@ -97,4 +100,12 @@ public class AdminFacade {
         return new EventDTO(event);
     }
 
+    public List<Event> getAllEvents() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT e FROM Event e", Event.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }
