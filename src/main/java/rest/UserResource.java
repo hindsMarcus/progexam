@@ -88,11 +88,4 @@ public class UserResource {
         UserDTO udto = FACADE.delete(username);
         return Response.ok().entity(udto).build();
     }
-
-
-
-
-
-
-
 }
