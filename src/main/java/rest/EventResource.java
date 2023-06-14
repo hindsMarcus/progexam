@@ -25,11 +25,10 @@ public class EventResource {
 
     // US-1: As a member, I would like to see all events
     @GET
+    @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllEvents() {
-        // Retrieve all events from the database
         List<EventDTO> events = FACADE.getAllEvents();
-
         return Response.ok(events).build();
     }
 }

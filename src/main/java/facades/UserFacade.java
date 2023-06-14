@@ -1,5 +1,7 @@
 package facades;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dtos.UserDTO;
 import entities.Role;
 import entities.User;
@@ -37,6 +39,9 @@ public class UserFacade {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
+
 
     public User getVerifiedUser(String username, String password) throws AuthenticationException {
         EntityManager em = emf.createEntityManager();
@@ -86,9 +91,42 @@ public class UserFacade {
         return UserDTO.getDtos(persons);
     }
 
-
-
-
+//    //This method shows all the previous transactions of a user and their current account status
+//    public UserDTO getTransactions(String username){
+//        EntityManager em = emf.createEntityManager();
+//        User u = em.find(User.class, username);
+//        return new UserDTO(u);
+//    }
+//
+//    //This method allows a user to assign their family to an event
+////This method shows all the previous transactions of a member and current account status
+//    public String getMemberTransactions(int id) {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            return GSON.toJson(em.createQuery("SELECT m FROM Member m WHERE m.id = :id")
+//                    .setParameter("id", id)
+//                    .getSingleResult());
+//        } finally {
+//            em.close();
+//        }
+//    }
+//
+//    //This method allows a member to assign their family for an event
+//    public String assignFamily(int id, int familyName) {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            em.createQuery("UPDATE Member m SET m.familyName = :familyId WHERE m.id = :id")
+//                    .setParameter("familyId", familyName)
+//                    .setParameter("id", id)
+//                    .executeUpdate();
+//            em.getTransaction().commit();
+//            return GSON.toJson(em.createQuery("SELECT m FROM Member m WHERE m.id = :id")
+//                    .setParameter("id", id)
+//                    .getSingleResult());
+//        } finally {
+//            em.close();
+//        }
 
 
 }

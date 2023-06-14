@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,15 +12,44 @@ public class Assignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "family_name", nullable = false)
     private String familyName;
-    private Date createDate;
+
+    @Column(name = "contact_info", nullable = false)
     private String contactInfo;
+
+    @Column(name = "date")
+    private String date;
 
     @ManyToOne
     private Event event;
 
     @ManyToMany
-    private List<Member> members;
+    @JoinTable(name = "assignment_users",
+            joinColumns = @JoinColumn(name = "assignment_id"),
+            inverseJoinColumns = @JoinColumn(name = "users_user_name"))
+    private List<User> users = new ArrayList<>();
+
+
+    public Assignment() {
+    }
+
+    public Assignment(String familyName, String createDate, String contactInfo, Event event, List<User> users) {
+        this.familyName = familyName;
+        this.date = createDate;
+        this.contactInfo = contactInfo;
+        this.event = event;
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
+    }
 
     public Long getId() {
         return id;
@@ -37,12 +67,12 @@ public class Assignment {
         this.familyName = familyName;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getContactInfo() {
@@ -57,15 +87,8 @@ public class Assignment {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void addEvent(Event event) {
         this.event = event;
     }
 
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
 }

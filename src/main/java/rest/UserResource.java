@@ -88,4 +88,10 @@ public class UserResource {
         UserDTO udto = FACADE.delete(username);
         return Response.ok().entity(udto).build();
     }
+
+    // US-2: As a user, I would like to see all my previous transactions and my current account status
+
+
+    // US-3: As a user, I would like to assign my family to an event and add members
+
 }

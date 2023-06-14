@@ -1,19 +1,20 @@
 package dtos;
 
-import java.time.LocalDateTime;
+import entities.Event;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class EventDTO {
 
-    private String id;
-    private LocalDateTime time;
+    private Long id;
+    private String time;
     private String location;
     private String dish;
     private double pricePerPerson;
 
-    public EventDTO() {
-    }
 
-    public EventDTO(String id, LocalDateTime time, String location, String dish, double pricePerPerson) {
+    public EventDTO(Long id, String time, String location, String dish, double pricePerPerson) {
         this.id = id;
         this.time = time;
         this.location = location;
@@ -21,19 +22,46 @@ public class EventDTO {
         this.pricePerPerson = pricePerPerson;
     }
 
-    public String getId() {
+    public EventDTO(String time, String location, String dish, double pricePerPerson) {
+        this.time = time;
+        this.location = location;
+        this.dish = dish;
+        this.pricePerPerson = pricePerPerson;
+    }
+
+    public EventDTO(Event event) {
+        this.id = event.getId();
+        this.time = event.getTime();
+        this.location = event.getLocation();
+        this.dish = event.getDish();
+        this.pricePerPerson = event.getPricePerPerson();
+    }
+
+
+    //This method gets a list of Event entities and returns a list of EventDTOs
+    public static List<EventDTO> getEventDTOs(List<Event> events) {
+        ArrayList<EventDTO> eventDTOS = new ArrayList<>();
+        for (Event event : events) {
+            EventDTO eventDTO = new EventDTO(event.getId(), event.getTime(), event.getLocation(), event.getDish(), event.getPricePerPerson());
+            System.out.println(event);
+            eventDTOS.add(eventDTO);
+        }
+        return eventDTOS;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

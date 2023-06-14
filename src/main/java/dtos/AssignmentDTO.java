@@ -12,8 +12,6 @@ public class AssignmentDTO {
     private List<String> memberIds;
 
 
-    public AssignmentDTO() {
-    }
 
     public AssignmentDTO(String id, String familyName, LocalDateTime createDate, String contactInfo, List<String> memberIds) {
         this.id = id;
@@ -21,6 +19,19 @@ public class AssignmentDTO {
         this.createDate = createDate;
         this.contactInfo = contactInfo;
         this.memberIds = memberIds;
+    }
+
+    public AssignmentDTO(String familyName, LocalDateTime createDate, String contactInfo, List<String> memberIds) {
+        this.familyName = familyName;
+        this.createDate = createDate;
+        this.contactInfo = contactInfo;
+        this.memberIds = memberIds;
+    }
+
+    public AssignmentDTO(String familyName, LocalDateTime createDate, String contactInfo) {
+        this.familyName = familyName;
+        this.createDate = createDate;
+        this.contactInfo = contactInfo;
     }
 
     public String getId() {

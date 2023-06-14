@@ -2,6 +2,8 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "event")
@@ -10,10 +12,32 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private Date time;
+
+    @Column(name = "time", nullable = false)
+    private String time;
+
+    @Column(name = "location", nullable = false)
     private String location;
+
+    @Column(name = "dish", nullable = false)
     private String dish;
+
+    @Column(name = "price_per_person", nullable = false)
     private double pricePerPerson;
+
+
+    public Event() {
+    }
+
+
+    public Event(String time, String location, String dish, double pricePerPerson) {
+        this.time = time;
+        this.location = location;
+        this.dish = dish;
+        this.pricePerPerson = pricePerPerson;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -23,11 +47,11 @@ public class Event {
         this.id = id;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -54,4 +78,21 @@ public class Event {
     public void setPricePerPerson(double pricePerPerson) {
         this.pricePerPerson = pricePerPerson;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return id != null && Objects.equals(id, event.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+//    public void removeUser(String userName) {
+//        users.remove(userName);
+//    }
 }
