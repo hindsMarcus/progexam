@@ -101,6 +101,7 @@ public class UserFacade {
         }
     }
 
+
 //    //This method shows all the previous transactions of a user and their current account status
 //    public UserDTO getTransactions(String username){
 //        EntityManager em = emf.createEntityManager();
