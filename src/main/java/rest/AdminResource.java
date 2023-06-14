@@ -23,6 +23,7 @@ public class AdminResource {
 
     // US-4: As an admin, I would like to create a new event
     @POST
+    @Path("create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createEvent(EventDTO eventDTO) {
@@ -40,7 +41,7 @@ public class AdminResource {
 
     // US-6: As an admin, I would like to update all information about an event
     @PUT
-    @Path("/{eventId}")
+    @Path("update/{eventId}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateEvent(@PathParam("eventId") Long eventId, EventDTO eventDTO) {
         eventDTO.setId(eventId);
@@ -51,7 +52,7 @@ public class AdminResource {
 
     // US-7: As an admin, I would like to delete an event
     @DELETE
-    @Path("/{eventId}")
+    @Path("delete/{eventId}")
     public Response deleteEvent(@PathParam("eventId") int eventId) {
         EventDTO eventDTO = FACADE.deleteEvent(eventId);
         return Response.ok(eventDTO).build();

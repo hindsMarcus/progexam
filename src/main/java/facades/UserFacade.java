@@ -91,6 +91,16 @@ public class UserFacade {
         return UserDTO.getDtos(persons);
     }
 
+    public UserDTO getUserByUserName(String userName) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            User user = em.find(User.class, userName);
+            return new UserDTO(user);
+        } finally {
+            em.close();
+        }
+    }
+
 //    //This method shows all the previous transactions of a user and their current account status
 //    public UserDTO getTransactions(String username){
 //        EntityManager em = emf.createEntityManager();

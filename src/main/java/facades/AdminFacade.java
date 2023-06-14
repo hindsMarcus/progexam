@@ -47,11 +47,12 @@ public class AdminFacade {
         return new EventDTO(event);
     }
 
-    //This method removes a user from an assignment
-//    public void removeUserFromEvent(int eventId, String userName) {
+    //This method deletes a user from an event in the database
+//    public EventDTO deleteUserFromEvent(int eventId, String userName) {
 //        EntityManager em = emf.createEntityManager();
 //        Event event = em.find(Event.class, eventId);
-//        event.removeUser(userName);
+//        UserDTO userDTO = UserFacade.getUserFacade(emf).getUserByUserName(userName);
+//        event.getUsers().remove(userDTO.getUserName());
 //        try {
 //            em.getTransaction().begin();
 //            em.merge(event);
@@ -59,8 +60,9 @@ public class AdminFacade {
 //        } finally {
 //            em.close();
 //        }
-//        new EventDTO(event);
+//        return new EventDTO(event);
 //    }
+
 
 
     //This method takes an eventDTO and updates the event in the database
@@ -81,7 +83,7 @@ public class AdminFacade {
         return new EventDTO(event);
     }
 
-    //This method takes an id and deletes the event in the database
+    //This method takes an id and deletes the event in the database, and removes the event from all users
     public EventDTO deleteEvent(int id) {
         EntityManager em = emf.createEntityManager();
         Event event = em.find(Event.class, id);
@@ -94,4 +96,5 @@ public class AdminFacade {
         }
         return new EventDTO(event);
     }
+
 }

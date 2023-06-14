@@ -92,7 +92,5 @@ public class Event {
         return getClass().hashCode();
     }
 
-//    public void removeUser(String userName) {
-//        users.remove(userName);
-//    }
+
 }
