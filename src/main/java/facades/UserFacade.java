@@ -109,18 +109,17 @@ public class UserFacade {
 //        return new UserDTO(u);
 //    }
 //
-//    //This method allows a user to assign their family to an event
-////This method shows all the previous transactions of a member and current account status
-//    public String getMemberTransactions(int id) {
+
+
+    //This method allows a user to see which events they are assigned to
+//    public UserDTO getEvents(String username){
 //        EntityManager em = emf.createEntityManager();
-//        try {
-//            return GSON.toJson(em.createQuery("SELECT m FROM Member m WHERE m.id = :id")
-//                    .setParameter("id", id)
-//                    .getSingleResult());
-//        } finally {
-//            em.close();
-//        }
+//        User u = em.find(User.class, username);
+//        return new UserDTO(u);
 //    }
+
+
+
 
 
 
